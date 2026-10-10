@@ -17,7 +17,7 @@ public:
 
         ListNode* odddum=head;
         ListNode* evendum=head->next;
-        ListNode* evenHead=head->next;
+        ListNode* evenHead=evendum;
         while(evendum!=NULL&& evendum->next!=NULL){
             odddum->next=odddum->next->next;
             evendum->next=evendum->next->next;
