@@ -57,6 +57,6 @@ public:
         mid->next=NULL;
         left=sortList(left);
         right=sortList(right);
-        return merge(left,right);
+        return merge(right,left);
     }
 };
