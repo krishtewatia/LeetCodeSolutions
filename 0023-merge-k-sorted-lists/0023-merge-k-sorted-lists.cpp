@@ -27,19 +27,27 @@ public:
             temp=temp->next;
         }
         if(l1!=nullptr) temp->next=l1;
-        if(l2!=nullptr) temp->next=l2;
-        // else temp->next=l2;
+        // if(l2!=nullptr) temp->next=l2;
+        else temp->next=l2;
 
         return dummy->next;
     }
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if(lists.empty()) return nullptr;
-        ListNode* temp;
-        ListNode* head=lists[0];
+    ListNode* merged(vector<ListNode*>& lists,int low,int high){
+        if(low==high) return lists[low];
 
-        for(int x=1;x<lists.size();x++){
-            head=mergel(head,lists[x]);
-        }
+        int mid= low + (high-low) /2;
+
+        ListNode* l1= merged(lists,low, mid);
+        ListNode* l2= merged(lists,mid+1, high);
+
+        ListNode* head=mergel(l1,l2);
         return head;
+
+    }
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.empty()) return NULL;
+        ListNode* head=merged(lists,0,lists.size()-1);
+        return head;
+
     }
 };
